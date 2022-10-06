@@ -1,14 +1,16 @@
 package com.example.service;
 
+import com.sun.org.apache.xpath.internal.operations.Mult;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.*;
-import org.springframework.stereotype.Service;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbookType;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,8 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-@Service
-public class ReadExcelFileService {
+public class ExampleExcelFileService {
     public static Path path = Paths.get("C:\\Users\\USER\\Downloads\\git-projects\\poi-project\\src\\main\\resources\\file\\newFile.xlsx");
 
     public static void main(String[] args) throws Exception {
@@ -30,6 +31,7 @@ public class ReadExcelFileService {
         readExcelFile();
 
     }
+
     private static void writeExcelFile() throws IOException {
         try (XSSFWorkbook workbook = new XSSFWorkbook()) {
             XSSFSheet sheet = workbook.createSheet("Info employees");
@@ -38,12 +40,13 @@ public class ReadExcelFileService {
 
             Map<String, Object[]> empInfo = new TreeMap<>();
 
-            empInfo.put("1", new Object[]{"EMP ID", "EMP NAME", "DESIGNATION"});
-            empInfo.put("2", new Object[]{"tp01", "John", "Technical Manager"});
-            empInfo.put("3", new Object[]{"tp02", "Sarah", "Proof Reader"});
-            empInfo.put("4", new Object[]{"tp03", "Mark", "Technical Writer"});
-            empInfo.put("5", new Object[]{"tp04", "Bob", "Technical Writer"});
-            empInfo.put("6", new Object[]{"tp05", "Lucy", "Technical Writer"});
+            empInfo.put("1", new Object[]{"EMP_ID", "EMP_NAME", "SALARY", "DESIGNATION"});
+            empInfo.put("2", new Object[]{"tp01", "John", 6000.500, "CEO"});
+            empInfo.put("3", new Object[]{"tp02", "Sarah", 5000.400, "Project Manager"});
+            empInfo.put("4", new Object[]{"tp03", "Mark", 3000.200, "Programmer"});
+            empInfo.put("5", new Object[]{"tp04", "Bob", 3000.200, "Programmer"});
+            empInfo.put("6", new Object[]{"tp05", "Lucy", 3000.200, "Programmer"});
+
 
             Set<String> keyId = empInfo.keySet();
             int rowId = 0;
@@ -56,7 +59,7 @@ public class ReadExcelFileService {
 
                 for (Object obj : infoArray) {
                     Cell cell = row.createCell(cellId++);
-                    cell.setCellValue((String) obj);
+                    cell.setCellValue(String.valueOf(obj));
                 }
 
                 FileOutputStream out = new FileOutputStream(path.toString());

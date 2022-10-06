@@ -1,2 +1,12 @@
-package com.example.response;public class ResponseMessage {
+package com.example.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class ResponseMessage {
+    private String message;
 }

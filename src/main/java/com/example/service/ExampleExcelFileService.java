@@ -1,14 +1,12 @@
 package com.example.service;
 
-import com.sun.org.apache.xpath.internal.operations.Mult;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbookType;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,14 +18,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+@Service
 public class ExampleExcelFileService {
     public static Path path = Paths.get("C:\\Users\\USER\\Downloads\\git-projects\\poi-project\\src\\main\\resources\\file\\newFile.xlsx");
 
     public static void main(String[] args) throws Exception {
 
         writeExcelFile();
-//        fontExcelFile();
-
         readExcelFile();
 
     }
@@ -102,28 +99,5 @@ public class ExampleExcelFileService {
         }
     }
 
-//    private static void fontExcelFile() throws IOException {
-//        XSSFWorkbook workbook = new XSSFWorkbook();
-//        XSSFSheet spreadsheet = workbook.createSheet("Fontstyle");
-//        XSSFRow row = spreadsheet.createRow(2);
-//
-//        XSSFFont font = workbook.createFont();
-//        font.setFontHeightInPoints((short) 30);
-//        font.setFontName("IMPACT");
-//        font.setItalic(true);
-//        font.setBold(true);
-//        font.setColor(IndexedColors.DARK_RED.index);
-//
-//        XSSFCellStyle style = workbook.createCellStyle();
-//        style.setFont(font);
-//
-//        XSSFCell cell = row.createCell(1);
-//        cell.setCellValue("Font Style");
-//        cell.setCellStyle(style);
-//
-//        FileOutputStream out = new FileOutputStream("fontstyle.xlsx");
-//        workbook.write(out);
-//        out.close();
-//    }
 
 }

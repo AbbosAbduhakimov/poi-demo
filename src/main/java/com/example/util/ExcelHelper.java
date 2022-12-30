@@ -6,8 +6,6 @@ import com.example.model.Employee;
 import lombok.experimental.UtilityClass;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,7 +61,7 @@ public class ExcelHelper {
 
                     switch (cellIndex) {
                         case 0:
-                            employee.setId(currentCell.getStringCellValue());
+                            employee.setId((int) currentCell.getNumericCellValue());
                             break;
                         case 1:
                             employee.setName(currentCell.getStringCellValue());
